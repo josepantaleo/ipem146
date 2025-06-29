@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Revolución Francesa</title>
+  <link rel="stylesheet" href="estiloseventos.css" />
+</head>
+<body>
+  <h1>Revolución Francesa</h1>
+
+  <p>
+    La Revolución Francesa comenzó en <strong>1789</strong> y marcó un cambio radical en la historia política y social de Francia y del mundo.
+    Fue un proceso que derrocó la monarquía absoluta y promovió los ideales de libertad, igualdad y fraternidad.
+  </p>
+
+  <h2>Contexto histórico</h2>
+  <p>
+    A finales del siglo XVIII, Francia enfrentaba una grave crisis económica y social, con desigualdades profundas entre las clases sociales.
+    La influencia de las ideas ilustradas y el ejemplo de la independencia estadounidense inspiraron a la población a buscar cambios.
+  </p>
+
+  <p>
+    En mayo de 1789 se convocó a los Estados Generales para tratar la crisis fiscal, pero las tensiones desembocaron en la creación de la Asamblea Nacional y el inicio de la revolución.
+  </p>
+
+  <h2>Eventos clave</h2>
+  <p>
+    El <strong>14 de julio de 1789</strong> se produjo la toma de la Bastilla, símbolo del poder absoluto de la monarquía.
+    Posteriormente, se redactó la Declaración de los Derechos del Hombre y del Ciudadano, que proclamaba los principios fundamentales de la revolución.
+  </p>
+
+  <h2>Consecuencias</h2>
+  <p>
+    La Revolución Francesa terminó con la monarquía y llevó al establecimiento de la República.
+    Sentó las bases de las democracias modernas y promovió cambios sociales y políticos en toda Europa.
+  </p>
+
+  <h2>Galería de imágenes</h2>
+  <div class="galeria">
+    <img src="bastilla.jpg" alt="Toma de la Bastilla" />
+    <img src="declaracion_derechos.jpg" alt="Declaración de los Derechos del Hombre" />
+    <img src="revolucion_francesa_marcha.jpg" alt="Marcha de mujeres a Versalles" />
+    <img src="robespierre.jpg" alt="Maximilien Robespierre" />
+    <img src="napoleon.jpg" alt="Napoleón Bonaparte" />
+  </div>
+
+  <!-- Trivia -->
+  <div id="trivia-container">
+    <h2>Trivia sobre la Revolución Francesa</h2>
+    <div id="pregunta"></div>
+    <div id="opciones"></div>
+    <div id="respuesta"></div>
+    <button id="siguiente">Siguiente pregunta</button>
+  </div>
+
+  <a href="index.html">← Volver al mapa</a>
+
+  <script>
+    const preguntasOriginales = [
+      { pregunta: "¿En qué año comenzó la Revolución Francesa?", opciones: ["1776", "1789", "1812"], respuesta: "1789" },
+      { pregunta: "¿Qué símbolo fue tomado el 14 de julio de 1789?", opciones: ["La Torre Eiffel", "La Bastilla", "El Palacio de Versalles"], respuesta: "La Bastilla" },
+      { pregunta: "¿Cuál fue uno de los ideales principales de la Revolución?", opciones: ["Monarquía absoluta", "Libertad, igualdad y fraternidad", "Imperialismo"], respuesta: "Libertad, igualdad y fraternidad" },
+      { pregunta: "¿Quién fue uno de los líderes más conocidos de la Revolución?", opciones: ["Maximilien Robespierre", "Napoleón Bonaparte", "Luis XVI"], respuesta: "Maximilien Robespierre" },
+      { pregunta: "¿Qué documento proclamó los derechos fundamentales durante la Revolución?", opciones: ["Declaración de los Derechos del Hombre", "Constitución de 1812", "Código Napoleónico"], respuesta: "Declaración de los Derechos del Hombre" },
+      { pregunta: "¿Qué tipo de gobierno se estableció tras la Revolución?", opciones: ["República", "Monarquía absoluta", "Dictadura"], respuesta: "República" },
+      { pregunta: "¿Qué evento marcó el fin de la Revolución Francesa?", opciones: ["La coronación de Napoleón", "La toma de la Bastilla", "La Revolución Industrial"], respuesta: "La coronación de Napoleón" },
+      { pregunta: "¿Cuál era el nombre del rey depuesto durante la Revolución?", opciones: ["Luis XVI", "Luis XIV", "Carlos X"], respuesta: "Luis XVI" },
+      { pregunta: "¿Qué grupo social estaba descontento y participó activamente en la revolución?", opciones: ["El clero", "El pueblo llano", "La nobleza"], respuesta: "El pueblo llano" },
+      { pregunta: "¿Cuál fue una consecuencia importante de la Revolución?", opciones: ["Fin de la monarquía absoluta", "Inicio de la Edad Media", "Colonización de América"], respuesta: "Fin de la monarquía absoluta" }
+    ];
+
+    let preguntas = [];
+    let indice = 0;
+    let puntaje = 0;
+
+    function mezclarArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function inicializarTrivia() {
+      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
+      mezclarArray(preguntas);
+      preguntas.forEach(p => mezclarArray(p.opciones));
+      indice = 0;
+      puntaje = 0;
+      mostrarPregunta();
+    }
+
+    function mostrarPregunta() {
+      if (indice >= preguntas.length) {
+        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
+        return;
+      }
+      const p = preguntas[indice];
+      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
+      const opcionesDiv = document.getElementById('opciones');
+      opcionesDiv.innerHTML = '';
+      p.opciones.forEach(opcion => {
+        const btn = document.createElement('button');
+        btn.textContent = opcion;
+        btn.onclick = () => verificarRespuesta(opcion);
+        opcionesDiv.appendChild(btn);
+      });
+      document.getElementById('respuesta').textContent = '';
+      document.getElementById('siguiente').style.display = 'none';
+    }
+
+    function verificarRespuesta(seleccion) {
+      const p = preguntas[indice];
+      const textoRespuesta = document.getElementById('respuesta');
+      if (seleccion === p.respuesta) {
+        textoRespuesta.textContent = '¡Correcto!';
+        puntaje++;
+      } else {
+        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
+      }
+      const botones = document.getElementById('opciones').children;
+      for (const btn of botones) {
+        btn.disabled = true;
+      }
+      document.getElementById('siguiente').style.display = 'inline-block';
+    }
+
+    document.getElementById('siguiente').addEventListener('click', () => {
+      indice++;
+      mostrarPregunta();
+    });
+
+    inicializarTrivia();
+  </script>
+</body>
+</html>

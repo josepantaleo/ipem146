@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Declaración de la Independencia Argentina</title>
+  <link rel="stylesheet" href="estiloseventos.css" />
+</head>
+<body>
+  <h1>Declaración de la Independencia Argentina</h1>
+
+  <p>
+    La <strong>Declaración de la Independencia</strong> fue proclamada el <strong>9 de julio de 1816</strong> en la ciudad de San Miguel de Tucumán,
+    durante el Congreso de Tucumán, en un contexto de luchas por la autonomía frente al dominio español.
+  </p>
+
+  <h2>Contexto histórico</h2>
+  <p>
+    Tras la Revolución de Mayo de 1810 y varios años de conflicto con el Imperio Español, las Provincias Unidas del Río de la Plata decidieron formalizar su independencia para consolidar su soberanía y avanzar hacia la organización nacional.
+  </p>
+
+  <h2>El Congreso de Tucumán</h2>
+  <p>
+    Reunidos en Tucumán, representantes de diversas provincias aprobaron la independencia y redactaron los primeros documentos fundacionales, sentando las bases para el futuro país.
+  </p>
+
+  <h2>Importancia</h2>
+  <p>
+    La declaración simbolizó el fin del dominio colonial y el inicio de una etapa de construcción política y social autónoma, con desafíos internos y externos para la joven nación.
+  </p>
+
+  <h2>Galería de imágenes</h2>
+  <div class="galeria">
+    <img src="independencia1.jpg" alt="Congreso de Tucumán" />
+    <img src="independencia2.jpg" alt="Declaración de la Independencia" />
+    <img src="independencia3.jpg" alt="Bandera Argentina" />
+    <img src="independencia4.jpg" alt="Acta de Independencia" />
+    <img src="independencia5.jpg" alt="Monumento a la Independencia" />
+  </div>
+
+  <!-- Trivia -->
+  <div id="trivia-container">
+    <h2>Trivia sobre la Declaración de la Independencia</h2>
+    <div id="pregunta"></div>
+    <div id="opciones"></div>
+    <div id="respuesta"></div>
+    <button id="siguiente">Siguiente pregunta</button>
+  </div>
+
+  <a href="index.html">← Volver al mapa</a>
+
+  <script>
+    const preguntasOriginales = [
+      { pregunta: "¿En qué fecha se declaró la Independencia Argentina?", opciones: ["25 de mayo de 1810", "9 de julio de 1816", "1 de enero de 1815"], respuesta: "9 de julio de 1816" },
+      { pregunta: "¿Dónde se realizó la Declaración de la Independencia?", opciones: ["Buenos Aires", "San Miguel de Tucumán", "Córdoba"], respuesta: "San Miguel de Tucumán" },
+      { pregunta: "¿Qué congreso proclamó la Independencia?", opciones: ["Congreso de Tucumán", "Congreso de Córdoba", "Congreso de Buenos Aires"], respuesta: "Congreso de Tucumán" },
+      { pregunta: "¿Cuál fue la principal razón para declarar la Independencia?", opciones: ["Fin del dominio colonial español", "Unificación con Chile", "Fin de la monarquía"], respuesta: "Fin del dominio colonial español" },
+      { pregunta: "¿Qué símbolo nacional está asociado a la independencia?", opciones: ["Escudo Nacional", "Bandera Argentina", "Himno Nacional"], respuesta: "Bandera Argentina" },
+      { pregunta: "¿Qué año precedió a la declaración de Independencia?", opciones: ["1810", "1815", "1820"], respuesta: "1810" }
+    ];
+
+    let preguntas = [];
+    let indice = 0;
+    let puntaje = 0;
+
+    function mezclarArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function inicializarTrivia() {
+      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
+      mezclarArray(preguntas);
+      preguntas.forEach(p => mezclarArray(p.opciones));
+      indice = 0;
+      puntaje = 0;
+      mostrarPregunta();
+    }
+
+    function mostrarPregunta() {
+      if (indice >= preguntas.length) {
+        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
+        return;
+      }
+      const p = preguntas[indice];
+      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
+      const opcionesDiv = document.getElementById('opciones');
+      opcionesDiv.innerHTML = '';
+      p.opciones.forEach(opcion => {
+        const btn = document.createElement('button');
+        btn.textContent = opcion;
+        btn.onclick = () => verificarRespuesta(opcion);
+        opcionesDiv.appendChild(btn);
+      });
+      document.getElementById('respuesta').textContent = '';
+      document.getElementById('siguiente').style.display = 'none';
+    }
+
+    function verificarRespuesta(seleccion) {
+      const p = preguntas[indice];
+      const textoRespuesta = document.getElementById('respuesta');
+      if (seleccion === p.respuesta) {
+        textoRespuesta.textContent = '¡Correcto!';
+        puntaje++;
+      } else {
+        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
+      }
+      const botones = document.getElementById('opciones').children;
+      for (const btn of botones) {
+        btn.disabled = true;
+      }
+      document.getElementById('siguiente').style.display = 'inline-block';
+    }
+
+    document.getElementById('siguiente').addEventListener('click', () => {
+      indice++;
+      mostrarPregunta();
+    });
+
+    inicializarTrivia();
+  </script>
+</body>
+</html>

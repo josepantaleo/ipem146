@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IPEM 146 Centenario - Villa Dolores, Córdoba</title>
+  <link rel="stylesheet" href="estiloseventos.css" />
+</head>
+<body>
+  <h1>IPEM 146 Centenario - Villa Dolores, Córdoba</h1>
+
+  <p>
+    El Instituto Provincial de Educación Media (IPEM) Nº 146 <strong>Centenario</strong> está ubicado en Villa Dolores, en el corazón del Valle de Traslasierra, Córdoba. Es una institución educativa con trayectoria, que ofrece formación técnica y profesional a jóvenes de la región.
+  </p>
+
+  <h2>Historia y Fundación</h2>
+  <p>
+    Fundado hace más de 50 años, el IPEM 146 ha sido clave para el desarrollo educativo y social de Villa Dolores. A lo largo de su historia, ha formado a numerosas generaciones en diversas especialidades técnicas, contribuyendo al crecimiento económico y cultural del valle.
+  </p>
+
+  <h2>Oferta Académica</h2>
+  <p>
+    El instituto ofrece carreras técnicas en áreas como Informática y Economía, preparando a los estudiantes para el mercado laboral y la continuidad educativa.
+  </p>
+
+  <h2>Infraestructura y Comunidad</h2>
+  <p>
+    Cuenta con modernas instalaciones, laboratorios equipados y un equipo docente comprometido. Además, mantiene vínculos con la comunidad local y otras instituciones para promover proyectos y actividades formativas.
+  </p>
+
+  <h2>Galería de Fotos</h2>
+  <div class="galeria">
+    <img src="ipem146_fachada.jpg" alt="Fachada IPEM 146" />
+    <img src="ipem146_laboratorio.jpg" alt="Laboratorio técnico" />
+    <img src="ipem146_aula.jpg" alt="Aula de clases" />
+    <img src="ipem146_evento.jpg" alt="Evento institucional" />
+  </div>
+
+  <!-- Trivia -->
+  <div id="trivia-container">
+    <h2>Trivia sobre IPEM 146 Centenario</h2>
+    <div id="pregunta"></div>
+    <div id="opciones"></div>
+    <div id="respuesta"></div>
+    <button id="siguiente">Siguiente pregunta</button>
+  </div>
+
+  <a href="index.html">← Volver al mapa</a>
+
+  <script>
+    const preguntasOriginales = [
+      { pregunta: "¿Dónde está ubicado el IPEM 146 Centenario?", opciones: ["Villa Dolores", "Córdoba Capital", "Mina Clavero"], respuesta: "Villa Dolores" },
+      { pregunta: "¿Qué tipo de formación ofrece el IPEM 146?", opciones: ["Formación profesional", "Sólo educación primaria", "Educación universitaria"], respuesta: "Formación profesional" },
+      { pregunta: "¿Cuántos años tiene aproximadamente el IPEM 146?", opciones: ["Más de 100 años", "Más de 50 años", "20 años"], respuesta: "Más de 50 años" },
+      { pregunta: "¿Cuál es una de las carreras técnicas que ofrece?", opciones: ["Informática - Economía", "Arte", "Ciencias Sociales"], respuesta: "Informática - Economía" },
+      { pregunta: "¿Qué tipo de infraestructura tiene el instituto?", opciones: ["Laboratorios equipados", "Sólo aulas básicas", "Biblioteca móvil"], respuesta: "Laboratorios equipados" },
+      { pregunta: "¿Con qué sectores mantiene vínculos el IPEM 146?", opciones: ["Comunidad y otras instituciones", "Sólo con empresas privadas", "No mantiene vínculos"], respuesta: "Comunidad y otras instituciones" }
+    ];
+
+    let preguntas = [];
+    let indice = 0;
+    let puntaje = 0;
+
+    function mezclarArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function inicializarTrivia() {
+      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
+      mezclarArray(preguntas);
+      preguntas.forEach(p => mezclarArray(p.opciones));
+      indice = 0;
+      puntaje = 0;
+      mostrarPregunta();
+    }
+
+    function mostrarPregunta() {
+      if (indice >= preguntas.length) {
+        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
+        return;
+      }
+      const p = preguntas[indice];
+      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
+      const opcionesDiv = document.getElementById('opciones');
+      opcionesDiv.innerHTML = '';
+      p.opciones.forEach(opcion => {
+        const btn = document.createElement('button');
+        btn.textContent = opcion;
+        btn.onclick = () => verificarRespuesta(opcion);
+        opcionesDiv.appendChild(btn);
+      });
+      document.getElementById('respuesta').textContent = '';
+      document.getElementById('siguiente').style.display = 'none';
+    }
+
+    function verificarRespuesta(seleccion) {
+      const p = preguntas[indice];
+      const textoRespuesta = document.getElementById('respuesta');
+      if (seleccion === p.respuesta) {
+        textoRespuesta.textContent = '¡Correcto!';
+        puntaje++;
+      } else {
+        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
+      }
+      const botones = document.getElementById('opciones').children;
+      for (const btn of botones) {
+        btn.disabled = true;
+      }
+      document.getElementById('siguiente').style.display = 'inline-block';
+    }
+
+    document.getElementById('siguiente').addEventListener('click', () => {
+      indice++;
+      mostrarPregunta();
+    });
+
+    inicializarTrivia();
+  </script>
+</body>
+</html>

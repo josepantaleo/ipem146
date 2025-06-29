@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mapa de Eventos Históricos</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+       <div>
+        <h1><strong>4to Año Informática</strong></h1>
+
+        <section>
+          <h2>Asignaturas</h2>
+          
+            <h3><strong>Historia</strong> – Prof/a: xxx</h3>
+            <h3><strong>Sistemas Digitales</strong> – Prof.: José Pantaleo</h3>
+          
+        </section>
+
+        <p><em>Formación Profesional en Programación Web</em></p>
+      </div>
+      <h1>Eventos Históricos en el Mapa</h1>
+      <div class="filtros">
+        <select id="filtroPeriodo">
+          <option value="todos">Todos los periodos</option>
+        </select>
+        <select id="filtroPais">
+          <option value="todos">Todos los países</option>
+        </select>
+        <input
+          id="busquedaTitulo"
+          type="text"
+          placeholder="Buscar por título..."
+          aria-label="Buscar por título"
+        />
+      </div>
+     
+    </header>
+
+    <div id="mapa"></div>
+
+    <div id="mensaje-no-eventos">No se encontraron eventos.</div>
+    <div
+      id="contador-eventos"
+      style="text-align: center; margin-top: 10px"
+    ></div>
+    <div id="lista-eventos" tabindex="0" aria-label="Lista de eventos"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="principal.js"></script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guerra de la Triple Alianza</title>
+  <link rel="stylesheet" href="estiloseventos.css" />
+</head>
+<body>
+  <h1>Guerra de la Triple Alianza</h1>
+
+  <p>
+    La <strong>Guerra de la Triple Alianza</strong> (1864-1870) fue un conflicto bélico entre Paraguay y la alianza formada por Argentina, Brasil y Uruguay.
+    Fue la guerra más sangrienta de la historia de América del Sur y tuvo profundas consecuencias para la región.
+  </p>
+
+  <h2>Contexto histórico</h2>
+  <p>
+    El conflicto se originó por disputas territoriales, políticas y económicas, así como por las tensiones internas en la región del Río de la Plata.
+    Paraguay, bajo la presidencia de Francisco Solano López, decidió enfrentar a sus vecinos para defender su soberanía.
+  </p>
+
+  <p>
+    La alianza entre Argentina, Brasil y Uruguay buscó frenar la expansión paraguaya y proteger sus intereses estratégicos en la región.
+  </p>
+
+  <h2>Desarrollo de la guerra</h2>
+  <p>
+    La guerra tuvo varias etapas, con intensos combates en ríos, selvas y ciudades. Paraguay sufrió graves pérdidas humanas y materiales.
+    La campaña militar terminó con la caída y muerte de Solano López en 1870.
+  </p>
+
+  <h2>Consecuencias</h2>
+  <p>
+    Paraguay quedó devastado, con una gran reducción de su población y pérdidas territoriales.
+    Argentina y Brasil consolidaron su influencia regional, mientras Uruguay reforzó su alianza con estos países.
+  </p>
+
+  <h2>Galería de imágenes</h2>
+  <div class="galeria">
+    <img src="guerra1.jpg" alt="Batalla de Tuyutí" />
+    <img src="guerra2.jpg" alt="Francisco Solano López" />
+    <img src="guerra3.jpg" alt="Mapa de la guerra" />
+    <img src="guerra4.jpg" alt="Soldados en combate" />
+    <img src="guerra5.jpg" alt="Monumento a la Triple Alianza" />
+  </div>
+
+  <!-- Trivia -->
+  <div id="trivia-container">
+    <h2>Trivia Guerra de la Triple Alianza</h2>
+    <div id="pregunta"></div>
+    <div id="opciones"></div>
+    <div id="respuesta"></div>
+    <button id="siguiente">Siguiente pregunta</button>
+  </div>
+
+  <a href="index.html">← Volver al mapa</a>
+
+  <script>
+    const preguntasOriginales = [
+      { pregunta: "¿En qué años se desarrolló la Guerra de la Triple Alianza?", opciones: ["1864-1870", "1810-1816", "1880-1885"], respuesta: "1864-1870" },
+      { pregunta: "¿Qué países formaron la Triple Alianza?", opciones: ["Argentina, Brasil y Uruguay", "Argentina, Chile y Perú", "Brasil, Paraguay y Bolivia"], respuesta: "Argentina, Brasil y Uruguay" },
+      { pregunta: "¿Quién fue el presidente de Paraguay durante la guerra?", opciones: ["Francisco Solano López", "José Gaspar Rodríguez de Francia", "Carlos Antonio López"], respuesta: "Francisco Solano López" },
+      { pregunta: "¿Cuál fue una de las causas principales del conflicto?", opciones: ["Disputas territoriales", "Intervención extranjera", "Crisis económica global"], respuesta: "Disputas territoriales" },
+      { pregunta: "¿Qué batalla fue una de las más sangrientas?", opciones: ["Batalla de Tuyutí", "Batalla de Caseros", "Batalla de Cepeda"], respuesta: "Batalla de Tuyutí" },
+      { pregunta: "¿Cuál fue una consecuencia para Paraguay?", opciones: ["Gran reducción poblacional", "Expansión territorial", "Alianza con Brasil"], respuesta: "Gran reducción poblacional" },
+      { pregunta: "¿En qué año murió Francisco Solano López?", opciones: ["1870", "1865", "1880"], respuesta: "1870" }
+    ];
+
+    let preguntas = [];
+    let indice = 0;
+    let puntaje = 0;
+
+    function mezclarArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function inicializarTrivia() {
+      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
+      mezclarArray(preguntas);
+      preguntas.forEach(p => mezclarArray(p.opciones));
+      indice = 0;
+      puntaje = 0;
+      mostrarPregunta();
+    }
+
+    function mostrarPregunta() {
+      if (indice >= preguntas.length) {
+        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
+        return;
+      }
+      const p = preguntas[indice];
+      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
+      const opcionesDiv = document.getElementById('opciones');
+      opcionesDiv.innerHTML = '';
+      p.opciones.forEach(opcion => {
+        const btn = document.createElement('button');
+        btn.textContent = opcion;
+        btn.onclick = () => verificarRespuesta(opcion);
+        opcionesDiv.appendChild(btn);
+      });
+      document.getElementById('respuesta').textContent = '';
+      document.getElementById('siguiente').style.display = 'none';
+    }
+
+    function verificarRespuesta(seleccion) {
+      const p = preguntas[indice];
+      const textoRespuesta = document.getElementById('respuesta');
+      if (seleccion === p.respuesta) {
+        textoRespuesta.textContent = '¡Correcto!';
+        puntaje++;
+      } else {
+        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
+      }
+      const botones = document.getElementById('opciones').children;
+      for (const btn of botones) {
+        btn.disabled = true;
+      }
+      document.getElementById('siguiente').style.display = 'inline-block';
+    }
+
+    document.getElementById('siguiente').addEventListener('click', () => {
+      indice++;
+      mostrarPregunta();
+    });
+
+    inicializarTrivia();
+  </script>
+</body>
+</html>

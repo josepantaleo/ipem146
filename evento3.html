@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Batalla de Cepeda (1820)</title>
+  <link rel="stylesheet" href="estiloseventos.css" />
+</head>
+<body>
+  <h1>Batalla de Cepeda (1820)</h1>
+
+  <p>
+    La <strong>Batalla de Cepeda</strong> fue un enfrentamiento crucial ocurrido el <strong>1 de febrero de 1820</strong> entre las fuerzas federales lideradas por el general <strong>Estanislao López</strong> y el ejército centralista de Buenos Aires dirigido por el general <strong>José Rondeau</strong>.
+  </p>
+
+  <h2>Contexto histórico</h2>
+  <p>
+    Esta batalla se dio en el marco de las tensiones entre provincias que defendían la autonomía federal y el gobierno centralista de Buenos Aires, que buscaba consolidar el poder absoluto tras la independencia.
+  </p>
+
+  <h2>Desarrollo y resultado</h2>
+  <p>
+    Las fuerzas federales lograron una decisiva victoria que llevó a la renuncia del Director Supremo y la disolución del gobierno central. Esto abrió paso a una etapa de federación provincial sin un poder central fuerte.
+  </p>
+
+  <h2>Consecuencias</h2>
+  <p>
+    La Batalla de Cepeda marcó el fin del Directorio y el comienzo de la llamada <strong>anarquía del año 20</strong>, una etapa de gran inestabilidad política en Argentina, con gobiernos provinciales autónomos y conflictos internos.
+  </p>
+
+  <h2>Importancia histórica</h2>
+  <p>
+    Este evento sentó las bases para la organización federal del país y es un hito en la lucha entre centralismo y federalismo que caracterizó gran parte del siglo XIX argentino.
+  </p>
+
+  <h2>Galería de imágenes</h2>
+  <div class="galeria">
+    <img src="cepeda1.jpg" alt="Grabado Batalla de Cepeda" />
+    <img src="cepeda2.jpg" alt="General Estanislao López" />
+    <img src="cepeda3.jpg" alt="Mapa del enfrentamiento" />
+    <img src="cepeda4.jpg" alt="Monumento Batalla de Cepeda" />
+    <img src="cepeda5.jpg" alt="Recreación histórica" />
+  </div>
+
+  <!-- Trivia -->
+  <div id="trivia-container">
+    <h2>Trivia sobre la Batalla de Cepeda</h2>
+    <div id="pregunta"></div>
+    <div id="opciones"></div>
+    <div id="respuesta"></div>
+    <button id="siguiente">Siguiente pregunta</button>
+  </div>
+
+  <a href="index.html">← Volver al mapa</a>
+
+  <script>
+    const preguntasOriginales = [
+      { pregunta: "¿En qué año ocurrió la Batalla de Cepeda?", opciones: ["1810", "1820", "1830"], respuesta: "1820" },
+      { pregunta: "¿Quién lideró las fuerzas federales en la batalla?", opciones: ["José Rondeau", "Estanislao López", "Juan Manuel de Rosas"], respuesta: "Estanislao López" },
+      { pregunta: "¿Cuál fue el resultado de la batalla?", opciones: ["Victoria centralista", "Victoria federal", "Empate"], respuesta: "Victoria federal" },
+      { pregunta: "¿Qué gobierno se disolvió tras la batalla?", opciones: ["Director Supremo", "Virreinato", "Monarquía"], respuesta: "Director Supremo" },
+      { pregunta: "¿Qué etapa política comenzó después de la batalla?", opciones: ["Anarquía del año 20", "Gobierno federal fuerte", "Dictadura"], respuesta: "Anarquía del año 20" },
+      { pregunta: "¿Qué tema central enfrentaban las provincias?", opciones: ["Monarquía vs República", "Centralismo vs Federalismo", "Independencia vs colonia"], respuesta: "Centralismo vs Federalismo" }
+    ];
+
+    let preguntas = [];
+    let indice = 0;
+    let puntaje = 0;
+
+    function mezclarArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function inicializarTrivia() {
+      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
+      mezclarArray(preguntas);
+      preguntas.forEach(p => mezclarArray(p.opciones));
+      indice = 0;
+      puntaje = 0;
+      mostrarPregunta();
+    }
+
+    function mostrarPregunta() {
+      if (indice >= preguntas.length) {
+        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
+        return;
+      }
+      const p = preguntas[indice];
+      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
+      const opcionesDiv = document.getElementById('opciones');
+      opcionesDiv.innerHTML = '';
+      p.opciones.forEach(opcion => {
+        const btn = document.createElement('button');
+        btn.textContent = opcion;
+        btn.onclick = () => verificarRespuesta(opcion);
+        opcionesDiv.appendChild(btn);
+      });
+      document.getElementById('respuesta').textContent = '';
+      document.getElementById('siguiente').style.display = 'none';
+    }
+
+    function verificarRespuesta(seleccion) {
+      const p = preguntas[indice];
+      const textoRespuesta = document.getElementById('respuesta');
+      if (seleccion === p.respuesta) {
+        textoRespuesta.textContent = '¡Correcto!';
+        puntaje++;
+      } else {
+        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
+      }
+      const botones = document.getElementById('opciones').children;
+      for (const btn of botones) {
+        btn.disabled = true;
+      }
+      document.getElementById('siguiente').style.display = 'inline-block';
+    }
+
+    document.getElementById('siguiente').addEventListener('click', () => {
+      indice++;
+      mostrarPregunta();
+    });
+
+    inicializarTrivia();
+  </script>
+</body>
+</html>

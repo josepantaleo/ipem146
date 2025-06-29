@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Declaración de Independencia de Estados Unidos</title>
+  <link rel="stylesheet" href="estiloseventos.css" />
+</head>
+<body>
+  <h1>Declaración de Independencia de Estados Unidos</h1>
+
+  <p>
+    La Declaración de Independencia fue firmada el <strong>4 de julio de 1776</strong>, proclamando la separación de las 13 colonias americanas del dominio británico
+    y estableciendo los principios fundamentales de libertad e igualdad.
+  </p>
+
+  <h2>Contexto histórico</h2>
+  <p>
+    A mediados del siglo XVIII, las colonias británicas en América del Norte crecían en población y economía,
+    pero enfrentaban impuestos y restricciones impuestos por el gobierno británico sin representación directa.
+    Esto generó descontento y deseos de autonomía entre los colonos.
+  </p>
+
+  <p>
+    En 1775 comenzó la Guerra de Independencia, y en 1776 se redactó y firmó la Declaración, principalmente redactada por Thomas Jefferson.
+  </p>
+
+  <h2>Contenido principal</h2>
+  <p>
+    La Declaración afirma que todos los hombres son creados iguales, con derechos inalienables como la vida, la libertad y la búsqueda de la felicidad.
+    Justifica la separación y la creación de un nuevo gobierno basado en el consentimiento de los gobernados.
+  </p>
+
+  <h2>Consecuencias</h2>
+  <p>
+    Este acto marcó el nacimiento de los Estados Unidos como nación independiente y sentó las bases para su Constitución y sistema democrático.
+    Inspiró movimientos de independencia y derechos civiles en todo el mundo.
+  </p>
+
+  <h2>Galería de imágenes</h2>
+  <div class="galeria">
+    <img src="declaracion_independencia_eeuu_1.jpg" alt="Firma de la Declaración" />
+    <img src="declaracion_independencia_eeuu_2.jpg" alt="Thomas Jefferson" />
+    <img src="batalla_lexington.jpg" alt="Batalla de Lexington" />
+    <img src="estatua_libertad.jpg" alt="Estatua de la Libertad" />
+  </div>
+
+  <!-- Trivia -->
+  <div id="trivia-container">
+    <h2>Trivia sobre la Declaración de Independencia</h2>
+    <div id="pregunta"></div>
+    <div id="opciones"></div>
+    <div id="respuesta"></div>
+    <button id="siguiente">Siguiente pregunta</button>
+  </div>
+
+  <a href="index.html">← Volver al mapa</a>
+
+  <script>
+    const preguntasOriginales = [
+      {
+        pregunta: "¿En qué fecha se firmó la Declaración de Independencia de Estados Unidos?",
+        opciones: ["4 de julio de 1776", "12 de octubre de 1492", "1 de enero de 1800"],
+        respuesta: "4 de julio de 1776"
+      },
+      {
+        pregunta: "¿Quién fue el principal autor de la Declaración de Independencia?",
+        opciones: ["George Washington", "Thomas Jefferson", "Benjamin Franklin"],
+        respuesta: "Thomas Jefferson"
+      },
+      {
+        pregunta: "¿Qué derechos inalienables menciona la Declaración?",
+        opciones: ["Vida, libertad y búsqueda de la felicidad", "Paz, justicia y trabajo", "Educación, salud y propiedad"],
+        respuesta: "Vida, libertad y búsqueda de la felicidad"
+      },
+      {
+        pregunta: "¿Cuántas colonias firmaron la Declaración?",
+        opciones: ["13", "7", "20"],
+        respuesta: "13"
+      },
+      {
+        pregunta: "¿Cuál fue la reacción del Reino Unido tras la Declaración?",
+        opciones: ["Aceptó la independencia", "Comenzó la Guerra de Independencia", "Ignoró la Declaración"],
+        respuesta: "Comenzó la Guerra de Independencia"
+      },
+      {
+        pregunta: "¿Qué evento antecedió directamente a la Declaración?",
+        opciones: ["La Guerra de Independencia", "La Revolución Francesa", "La Guerra Civil Americana"],
+        respuesta: "La Guerra de Independencia"
+      },
+      {
+        pregunta: "¿Cuál fue el propósito principal de la Declaración?",
+        opciones: ["Separarse de Gran Bretaña", "Crear un nuevo sistema educativo", "Unificar las colonias bajo Gran Bretaña"],
+        respuesta: "Separarse de Gran Bretaña"
+      },
+      {
+        pregunta: "¿Qué documento estableció el sistema de gobierno después de la independencia?",
+        opciones: ["La Constitución de los Estados Unidos", "La Carta Magna", "El Tratado de París"],
+        respuesta: "La Constitución de los Estados Unidos"
+      },
+      {
+        pregunta: "¿Quién fue presidente durante la firma de la Declaración?",
+        opciones: ["George Washington", "John Adams", "No había presidente aún"],
+        respuesta: "No había presidente aún"
+      },
+      {
+        pregunta: "¿Qué símbolo es asociado con la libertad estadounidense?",
+        opciones: ["La Estatua de la Libertad", "El Águila Calva", "La Bandera Roja"],
+        respuesta: "La Estatua de la Libertad"
+      }
+    ];
+
+    let preguntas = [];
+    let indice = 0;
+    let puntaje = 0;
+
+    function mezclarArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function inicializarTrivia() {
+      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
+      mezclarArray(preguntas);
+      preguntas.forEach(p => mezclarArray(p.opciones));
+      indice = 0;
+      puntaje = 0;
+      mostrarPregunta();
+    }
+
+    function mostrarPregunta() {
+      if (indice >= preguntas.length) {
+        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
+        return;
+      }
+      const p = preguntas[indice];
+      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
+      const opcionesDiv = document.getElementById('opciones');
+      opcionesDiv.innerHTML = '';
+      p.opciones.forEach(opcion => {
+        const btn = document.createElement('button');
+        btn.textContent = opcion;
+        btn.onclick = () => verificarRespuesta(opcion);
+        opcionesDiv.appendChild(btn);
+      });
+      document.getElementById('respuesta').textContent = '';
+      document.getElementById('siguiente').style.display = 'none';
+    }
+
+    function verificarRespuesta(seleccion) {
+      const p = preguntas[indice];
+      const textoRespuesta = document.getElementById('respuesta');
+      if (seleccion === p.respuesta) {
+        textoRespuesta.textContent = '¡Correcto!';
+        puntaje++;
+      } else {
+        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
+      }
+      const botones = document.getElementById('opciones').children;
+      for (const btn of botones) {
+        btn.disabled = true;
+      }
+      document.getElementById('siguiente').style.display = 'inline-block';
+    }
+
+    document.getElementById('siguiente').addEventListener('click', () => {
+      indice++;
+      mostrarPregunta();
+    });
+
+    inicializarTrivia();
+  </script>
+</body>
+</html>

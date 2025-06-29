@@ -1,0 +1,189 @@
+/* Fuente y reset */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Títulos */
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #880e4f;
+  text-shadow: 2px 2px 5px rgba(136, 14, 79, 0.2);
+}
+
+h2 {
+  font-size: 2rem;
+  color: #4a148c;
+  margin: 40px 0 15px;
+  border-left: 6px solid #7b1fa2;
+  padding-left: 12px;
+}
+
+/* Párrafos y énfasis */
+p {
+  font-size: 1.15rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+strong {
+  color: #00695c;
+}
+
+/* Galería de imágenes */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 20px 0 40px;
+}
+
+.galeria img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 150, 136, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 30px rgba(0, 150, 136, 0.5);
+}
+
+/* Trivia contenedor */
+#trivia-container {
+  background: #ffffff;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(74, 20, 140, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Pregunta */
+#pregunta {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #066d06;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Opciones */
+#opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+#opciones button {
+  flex: 1 1 45%;
+  background: #f3e5f5;
+  border: 2px solid #ab47bc;
+  color: #4a148c;
+  padding: 14px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#opciones button:hover:not(:disabled) {
+  background: #38ec47;
+  transform: scale(1.03);
+}
+
+#opciones button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Respuesta */
+#respuesta {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 2.2rem;
+  text-align: center;
+  min-height: 1.2em;
+  color:rgb(10, 8, 138);
+}
+
+/* Botón siguiente */
+#siguiente {
+  margin-top: 25px;
+  padding: 14px 28px;
+  background: #4db6ac;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(77, 182, 172, 0.4);
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: none;
+}
+
+#siguiente:hover {
+  background: #00897b;
+  transform: scale(1.04);
+}
+
+/* Enlace volver */
+a {
+  display: block;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #00695c;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #004d40;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #opciones button {
+    flex: 1 1 100%;
+  }
+
+  .galeria {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  #pregunta {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fundación de Villa Dolores</title>
+  <link rel="stylesheet" href="estiloseventos.css">
+</head>
+<body>
+  <h1>Fundación de Villa Dolores</h1>
+
+  <p>
+    Villa Dolores fue fundada el <strong>21 de abril de 1853</strong> por el gobernador Roque Ferreira, y está ubicada en el corazón del
+    Valle de Traslasierra, provincia de Córdoba. Es hoy una ciudad clave del oeste cordobés.
+  </p>
+
+  <h2>Contexto histórico y fundacional</h2>
+  <p>
+    Antes de la llegada de los españoles, el Valle de Traslasierra estaba habitado por pueblos originarios como los <strong>comechingones</strong>,
+    que vivían en comunidades organizadas, con prácticas agrícolas, ganadería menor y viviendas semienterradas.
+  </p>
+
+  <p>
+    Durante el periodo colonial, la región se pobló con estancias criollas. El crecimiento espontáneo llevó a la formación del paraje donde
+    se construiría una capilla en honor a <strong>Nuestra Señora de los Dolores</strong>. Ese núcleo devocional daría nombre a la ciudad.
+  </p>
+
+  <h2>Fundación oficial</h2>
+  <p>
+    El <strong>21 de abril de 1853</strong>, mediante decreto del gobernador Roque Ferreira, se estableció oficialmente la traza urbana de la villa.
+    Se organizaron calles, una plaza central y solares para nuevas familias. La ciudad fue bautizada como "Villa de Nuestra Señora de los Dolores".
+  </p>
+
+  <h2>Crecimiento y consolidación</h2>
+  <p>
+    En el siglo XIX y XX, Villa Dolores creció con la llegada del ferrocarril, el desarrollo agrícola (papa, tabaco, hortalizas) y el comercio.
+    La <strong>Feria Franca</strong>, vigente hasta hoy, es símbolo de este dinamismo local.
+  </p>
+
+  <h2>Actualidad</h2>
+  <p>
+    Villa Dolores tiene más de 35.000 habitantes, instituciones educativas, hospital regional, juzgados, y es centro cultural y turístico.
+    Es un punto clave para explorar el Valle de Traslasierra y su naturaleza única.
+  </p>
+
+  <h2>Galería de Fotos Históricas y Actuales</h2>
+  <div class="galeria">
+    <img src="villa1.jpg" alt="Villa Dolores antigua" />
+    <img src="villa2.jpg" alt="Capilla original" />
+    <img src="media/villa3.jpg" alt="Vista panorámica actual" />
+    <img src="media/villa4.jpg" alt="Plaza central" />
+    <img src="media/villa5.jpg" alt="Calle típica" />
+  </div>
+
+  <!-- Trivia -->
+  <div id="trivia-container">
+    <h2>Trivia Histórica sobre Villa Dolores</h2>
+    <div id="pregunta"></div>
+    <div id="opciones"></div>
+    <div id="respuesta"></div>
+    <button id="siguiente">Siguiente pregunta</button>
+  </div>
+
+  <a href="index.html">← Volver al mapa</a>
+
+  <script>
+    const preguntasOriginales = [
+      { pregunta: "¿En qué año fue fundada Villa Dolores?", opciones: ["1810", "1853", "1900"], respuesta: "1853" },
+      { pregunta: "¿Quién firmó el decreto de fundación?", opciones: ["Juan Manuel de Rosas", "Roque Ferreira", "Justo José de Urquiza"], respuesta: "Roque Ferreira" },
+      { pregunta: "¿Qué pueblo originario habitaba la región?", opciones: ["Mapuches", "Guaraníes", "Comechingones"], respuesta: "Comechingones" },
+      { pregunta: "¿Qué feria tradicional sigue vigente?", opciones: ["Feria Franca", "Feria del Norte", "Expo Rural"], respuesta: "Feria Franca" },
+      { pregunta: "¿En qué provincia se encuentra Villa Dolores?", opciones: ["Mendoza", "Córdoba", "San Luis"], respuesta: "Córdoba" },
+      { pregunta: "¿Cuál es el principal valle donde está Villa Dolores?", opciones: ["Valle de Punilla", "Valle de Traslasierra", "Valle Calchaquí"], respuesta: "Valle de Traslasierra" },
+      { pregunta: "¿Qué transporte impulsó el crecimiento de la ciudad?", opciones: ["Ferrocarril", "Carretera", "Aeronave"], respuesta: "Ferrocarril" },
+      { pregunta: "¿Cuál es una de las producciones agrícolas históricas?", opciones: ["Manzana", "Tabaco", "Algodón"], respuesta: "Tabaco" },
+      { pregunta: "¿Qué año llegó el ferrocarril a Villa Dolores?", opciones: ["1905", "1920", "1880"], respuesta: "1905" },
+      { pregunta: "¿Cuál es el nombre completo de la ciudad?", opciones: ["Villa Dolores de Traslasierra", "Villa de Nuestra Señora de los Dolores", "Dolores del Valle"], respuesta: "Villa de Nuestra Señora de los Dolores" }
+    ];
+
+    let preguntas = [];
+    let indice = 0;
+    let puntaje = 0;
+
+    function mezclarArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function inicializarTrivia() {
+      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
+      mezclarArray(preguntas);
+      preguntas.forEach(p => mezclarArray(p.opciones));
+      indice = 0;
+      puntaje = 0;
+      mostrarPregunta();
+    }
+
+    function mostrarPregunta() {
+      if (indice >= preguntas.length) {
+        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
+        return;
+      }
+      const p = preguntas[indice];
+      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
+      const opcionesDiv = document.getElementById('opciones');
+      opcionesDiv.innerHTML = '';
+      p.opciones.forEach(opcion => {
+        const btn = document.createElement('button');
+        btn.textContent = opcion;
+        btn.onclick = () => verificarRespuesta(opcion);
+        opcionesDiv.appendChild(btn);
+      });
+      document.getElementById('respuesta').textContent = '';
+      document.getElementById('siguiente').style.display = 'none';
+    }
+
+    function verificarRespuesta(seleccion) {
+      const p = preguntas[indice];
+      const textoRespuesta = document.getElementById('respuesta');
+      if (seleccion === p.respuesta) {
+        textoRespuesta.textContent = '¡Correcto!';
+        puntaje++;
+      } else {
+        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
+      }
+      const botones = document.getElementById('opciones').children;
+      for (const btn of botones) {
+        btn.disabled = true;
+      }
+      document.getElementById('siguiente').style.display = 'inline-block';
+    }
+
+    document.getElementById('siguiente').addEventListener('click', () => {
+      indice++;
+      mostrarPregunta();
+    });
+
+    inicializarTrivia();
+  </script>
+</body>
+</html>
