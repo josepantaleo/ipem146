@@ -1,0 +1,109 @@
+{
+  "evento1": [
+    {
+      "pregunta": "¿En qué año ocurrió la Revolución de Mayo?",
+      "opciones": ["1810", "1816", "1820"],
+      "respuesta": "1810"
+    },
+    {
+      "pregunta": "¿Qué virrey fue depuesto durante la Revolución?",
+      "opciones": ["Baltasar Hidalgo de Cisneros", "Juan José de Vértiz", "Mariano Moreno"],
+      "respuesta": "Baltasar Hidalgo de Cisneros"
+    },
+    {
+      "pregunta": "¿Cómo se llamó el primer gobierno autónomo formado?",
+      "opciones": ["Segunda Junta", "Primera Junta", "Congreso de Tucumán"],
+      "respuesta": "Primera Junta"
+    },
+    {
+      "pregunta": "¿Qué fecha se celebra como día de la Revolución de Mayo?",
+      "opciones": ["25 de mayo", "9 de julio", "20 de junio"],
+      "respuesta": "25 de mayo"
+    }
+  ],
+  "evento2": [
+    {
+      "pregunta": "¿En qué fecha se declaró la independencia de Argentina?",
+      "opciones": ["25 de mayo de 1810", "9 de julio de 1816", "17 de agosto de 1812", "20 de septiembre de 1814"],
+      "respuesta": "9 de julio de 1816"
+    },
+    {
+      "pregunta": "¿Dónde se reunió el Congreso que declaró la independencia argentina?",
+      "opciones": ["Buenos Aires", "Rosario", "Tucumán", "Córdoba"],
+      "respuesta": "Tucumán"
+    },
+    {
+      "pregunta": "¿Cuál era el nombre oficial del territorio que declaró su independencia en 1816?",
+      "opciones": [
+        "Provincias Unidas del Río de la Plata",
+        "República Argentina",
+        "Virreinato del Río de la Plata",
+        "Confederación Argentina"
+      ],
+      "respuesta": "Provincias Unidas del Río de la Plata"
+    },
+    {
+      "pregunta": "¿Qué acto simbolizó formalmente la independencia de Argentina del dominio español?",
+      "opciones": [
+        "La Revolución de Mayo",
+        "El Cabildo Abierto",
+        "La Declaración de la Independencia",
+        "La Constitución de 1853"
+      ],
+      "respuesta": "La Declaración de la Independencia"
+    },
+    {
+      "pregunta": "¿Cuál es el nombre de la casa donde se firmó la declaración de independencia?",
+      "opciones": [
+        "Casa Rosada",
+        "Casa Histórica de Tucumán",
+        "Palacio San Martín",
+        "Casa de Tucumán"
+      ],
+      "respuesta": "Casa Histórica de Tucumán"
+    }
+  ],
+  "evento3": [
+    {
+      "pregunta": "¿En qué año fue fundada Villa Dolores?",
+      "opciones": ["1810", "1853", "1900"],
+      "respuesta": "1853"
+    },
+    {
+      "pregunta": "¿Quién firmó el decreto de fundación?",
+      "opciones": ["Juan Manuel de Rosas", "Roque Ferreira", "Justo José de Urquiza"],
+      "respuesta": "Roque Ferreira"
+    }
+  ],
+  "evento4": [
+    {
+      "pregunta": "¿En qué año comenzó la Revolución Francesa?",
+      "opciones": ["1776", "1789", "1804"],
+      "respuesta": "1789"
+    },
+    {
+      "pregunta": "¿Qué evento marcó simbólicamente el inicio de la Revolución Francesa?",
+      "opciones": ["Toma de la Bastilla", "Declaración de Independencia", "Coronación de Napoleón"],
+      "respuesta": "Toma de la Bastilla"
+    },
+    {
+      "pregunta": "¿Qué documento proclamó los derechos universales durante la Revolución Francesa?",
+      "opciones": [
+        "Declaración de los Derechos del Hombre y del Ciudadano",
+        "Constitución de 1791",
+        "Código Napoleónico"
+      ],
+      "respuesta": "Declaración de los Derechos del Hombre y del Ciudadano"
+    },
+    {
+      "pregunta": "¿Qué monarca fue ejecutado durante la Revolución Francesa?",
+      "opciones": ["Luis XIV", "Luis XVI", "Carlos X"],
+      "respuesta": "Luis XVI"
+    },
+    {
+      "pregunta": "¿Quién lideró el periodo del Terror en la Revolución Francesa?",
+      "opciones": ["Robespierre", "Danton", "Napoleón Bonaparte"],
+      "respuesta": "Robespierre"
+    }
+  ]
+}

@@ -1,130 +1,95 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Constitución Nacional Argentina</title>
-  <link rel="stylesheet" href="estiloseventos.css" />
-</head>
-<body>
-  <h1>Constitución Nacional Argentina</h1>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Revolución Francesa</title>
+    <link rel="stylesheet" href="estiloseventos.css" />
+  </head>
+  <body data-evento="evento4">
 
-  <p>
-    La <strong>Constitución Nacional Argentina</strong> es la ley fundamental que organiza la estructura política, los derechos y deberes de los ciudadanos y el funcionamiento del Estado argentino. Fue sancionada originalmente en 1853.
-  </p>
+    <!-- Enlace de regreso al mapa -->
+    <a href="index.html" class="volver-mapa">← Volver al mapa</a>
 
-  <h2>Contexto histórico</h2>
-  <p>
-    Tras la independencia y conflictos internos, Argentina necesitaba un marco legal estable para unificar las provincias y establecer un gobierno nacional. La Constitución fue redactada para asegurar la paz, la justicia y la libertad.
-  </p>
+    <h1>Revolución Francesa</h1>
 
-  <h2>Contenido principal</h2>
-  <p>
-    La Constitución establece la división de poderes (Ejecutivo, Legislativo y Judicial), define los derechos individuales y sociales, y regula la organización territorial y electoral del país.
-  </p>
+    <p>
+      La <strong>Revolución Francesa</strong> fue un proceso social, político y económico
+      que tuvo lugar en Francia entre 1789 y 1799. Marcó el fin del absolutismo y el surgimiento
+      de nuevas ideas de libertad, igualdad y fraternidad, que influyeron profundamente en todo el mundo.
+    </p>
 
-  <h2>Reformas y actualizaciones</h2>
-  <p>
-    Desde 1853, la Constitución ha tenido varias reformas importantes (por ejemplo en 1860, 1898, 1957 y 1994) que adaptaron el texto a nuevas realidades políticas, sociales y económicas.
-  </p>
+    <h2>Contexto histórico</h2>
+    <p>
+      A finales del siglo XVIII, Francia enfrentaba una profunda crisis económica,
+      un sistema fiscal injusto y una sociedad dividida en estamentos: clero, nobleza y tercer estado.
+      Las ideas de la Ilustración y el ejemplo de la independencia de Estados Unidos
+      alimentaron el descontento popular.
+    </p>
 
-  <h2>Importancia actual</h2>
-  <p>
-    Es la base del sistema democrático argentino y protege derechos fundamentales como la igualdad, la libertad de expresión y la propiedad privada.
-  </p>
+    <h2>Desarrollo de la Revolución</h2>
+    <p>
+      En 1789, el pueblo tomó la Bastilla, símbolo del poder monárquico. Luego se abolieron
+      los privilegios feudales y se proclamó la <strong>Declaración de los Derechos del Hombre y del Ciudadano</strong>.
+      A lo largo de la década, se sucedieron gobiernos, juicios revolucionarios y conflictos internos.
+    </p>
 
-  <h2>Galería de imágenes</h2>
-  <div class="galeria">
-    <img src="constitucion1.jpg" alt="Manuscrito original de la Constitución" />
-    <img src="constitucion2.jpg" alt="Congreso Nacional" />
-    <img src="constitucion3.jpg" alt="Reforma constitucional de 1994" />
-    <img src="constitucion4.jpg" alt="Sala del Congreso" />
-    <img src="constitucion5.jpg" alt="Simbolismo nacional" />
-  </div>
+    <h2>Fin de la monarquía y consecuencias</h2>
+    <p>
+      El rey Luis XVI fue ejecutado en 1793. El país vivió un periodo de terror liderado por Robespierre
+      hasta su caída. Finalmente, en 1799, Napoleón Bonaparte tomó el poder con un golpe de Estado,
+      poniendo fin a la Revolución.
+    </p>
 
-  <!-- Trivia -->
-  <div id="trivia-container">
-    <h2>Trivia Constitución Nacional Argentina</h2>
-    <div id="pregunta"></div>
-    <div id="opciones"></div>
-    <div id="respuesta"></div>
-    <button id="siguiente">Siguiente pregunta</button>
-  </div>
+    <h2>Importancia</h2>
+    <p>
+      La Revolución Francesa sentó las bases de los estados modernos, inspiró movimientos democráticos
+      y significó el fin del Antiguo Régimen en gran parte de Europa. Sus ideales siguen presentes en los
+      valores republicanos actuales.
+    </p>
 
-  <a href="index.html">← Volver al mapa</a>
+    <h2>Galería de Imágenes Históricas</h2>
+    <div class="galeria">
+      <img src="francia1.jpg" alt="Toma de la Bastilla" />
+      <img src="francia2.jpg" alt="Declaración de los Derechos del Hombre" />
+      <img src="francia3.jpg" alt="Juicio a Luis XVI" />
+      <img src="francia4.jpg" alt="Robespierre durante el periodo del Terror" />
+      <img src="francia5.jpg" alt="Napoleón asume el poder" />
+    </div>
 
-  <script>
-    const preguntasOriginales = [
-      { pregunta: "¿En qué año se sancionó la Constitución Nacional Argentina?", opciones: ["1810", "1853", "1910"], respuesta: "1853" },
-      { pregunta: "¿Cuántos poderes establece la Constitución?", opciones: ["Dos", "Tres", "Cuatro"], respuesta: "Tres" },
-      { pregunta: "¿Cuál es uno de los derechos protegidos por la Constitución?", opciones: ["Libertad de expresión", "Servicio militar obligatorio", "Monarquía"], respuesta: "Libertad de expresión" },
-      { pregunta: "¿Dónde se sancionó la Constitución?", opciones: ["Rosario", "Buenos Aires", "Córdoba"], respuesta: "Buenos Aires" },
-      { pregunta: "¿En qué año fue la última gran reforma constitucional?", opciones: ["1994", "1957", "2001"], respuesta: "1994" },
-      { pregunta: "¿Qué poder está encargado de hacer las leyes?", opciones: ["Ejecutivo", "Legislativo", "Judicial"], respuesta: "Legislativo" },
-      { pregunta: "¿La Constitución Argentina es considerada?", opciones: ["Ley suprema del país", "Una recomendación", "Un tratado internacional"], respuesta: "Ley suprema del país" }
-    ];
+    <h2>Trivia Histórica sobre la Revolución Francesa</h2>
+    <button id="comenzar">✅ Comenzar trivia</button>
 
-    let preguntas = [];
-    let indice = 0;
-    let puntaje = 0;
+    <div id="trivia-container" style="display: none">
+      <div id="progreso"></div>
+      <div
+        id="pregunta"
+        style="font-weight: bold; font-size: 1.2rem; margin-bottom: 10px"
+      ></div>
+      <div id="opciones"></div>
+      <div id="respuesta"></div>
+      <button id="siguiente">Siguiente pregunta</button>
+    </div>
 
-    function mezclarArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
+    <!-- Segundo enlace de regreso -->
+    <br />
+    <a href="index.html" class="volver-mapa">← Volver al mapa</a>
 
-    function inicializarTrivia() {
-      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
-      mezclarArray(preguntas);
-      preguntas.forEach(p => mezclarArray(p.opciones));
-      indice = 0;
-      puntaje = 0;
-      mostrarPregunta();
-    }
-
-    function mostrarPregunta() {
-      if (indice >= preguntas.length) {
-        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
-        return;
-      }
-      const p = preguntas[indice];
-      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
-      const opcionesDiv = document.getElementById('opciones');
-      opcionesDiv.innerHTML = '';
-      p.opciones.forEach(opcion => {
-        const btn = document.createElement('button');
-        btn.textContent = opcion;
-        btn.onclick = () => verificarRespuesta(opcion);
-        opcionesDiv.appendChild(btn);
+    <script src="trivia.js"></script>
+    <script>
+      // Código para cancelar audio y trivia al volver al mapa
+      document.querySelectorAll(".volver-mapa").forEach((enlace) => {
+        enlace.addEventListener("click", function () {
+          window.speechSynthesis.cancel();
+          if (document.getElementById("trivia-container")) {
+            preguntas = [];
+            indice = 0;
+            puntaje = 0;
+            document.getElementById("trivia-container").style.display = "none";
+            document.getElementById("comenzar").style.display = "inline-block";
+          }
+        });
       });
-      document.getElementById('respuesta').textContent = '';
-      document.getElementById('siguiente').style.display = 'none';
-    }
-
-    function verificarRespuesta(seleccion) {
-      const p = preguntas[indice];
-      const textoRespuesta = document.getElementById('respuesta');
-      if (seleccion === p.respuesta) {
-        textoRespuesta.textContent = '¡Correcto!';
-        puntaje++;
-      } else {
-        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
-      }
-      const botones = document.getElementById('opciones').children;
-      for (const btn of botones) {
-        btn.disabled = true;
-      }
-      document.getElementById('siguiente').style.display = 'inline-block';
-    }
-
-    document.getElementById('siguiente').addEventListener('click', () => {
-      indice++;
-      mostrarPregunta();
-    });
-
-    inicializarTrivia();
-  </script>
-</body>
+    </script>
+  </body>
 </html>

@@ -19,28 +19,8 @@
     "descripcion": "El Congreso de Tucumán declaró la independencia de las Provincias Unidas del Río de la Plata.",
     "media": "independencia.jpg"
   },
-  {
+    {
     "id": 3,
-    "titulo": "Batalla de Cepeda",
-    "fecha": "1820-02-01",
-    "periodo": "Siglo XIX",
-    "ubicacion": [-33.8, -60.5],
-    "pais": "Argentina",
-    "descripcion": "Enfrentamiento entre unitarios y federales que marcó el fin del Directorio.",
-    "media": "batalla_cepeda.jpg"
-  },
-  {
-    "id": 4,
-    "titulo": "Constitución Nacional",
-    "fecha": "1853-05-01",
-    "periodo": "Siglo XIX",
-    "ubicacion": [-31.6333, -60.7],
-    "pais": "Argentina",
-    "descripcion": "Se sancionó la Constitución Nacional Argentina en Santa Fe.",
-    "media": "constitucion_1853.jpg"
-  },
-  {
-    "id": 5,
     "titulo": "Fundación de la ciudad de Villa Dolores",
     "fecha": "1853-04-21",
     "periodo": "Siglo XIX",
@@ -49,44 +29,14 @@
     "descripcion": "Fundación de la ciudad de Villa Dolores.",
     "media": "fundacion_villa_dolores.jpg"
   },
-  {
-    "id": 6,
-    "titulo": "Guerra de la Triple Alianza",
-    "fecha": "1865-05-01",
-    "periodo": "Siglo XIX",
-    "ubicacion": [-27.3, -58.0],
-    "pais": "Argentina",
-    "descripcion": "Conflicto bélico entre Argentina, Brasil y Uruguay contra Paraguay.",
-    "media": "triple_alianza.jpg"
-  },
-  {
-    "id": 7,
-    "titulo": "IPEM 146 Centenario",
-    "fecha": "1978-05-01",
-    "periodo": "Siglo XX",
-    "ubicacion": [-31.945334178534477, -65.19405933357761],
-    "pais": "Argentina",
-    "descripcion": "El 21 de abril  de 1853, coincidiendo con el centenario de Villa Dolores, nacía en nuestra ciudad la Escuela Comercial.",
-    "media": "triple_alianza.jpg"
-  },
-  {
-    "id": 8,
+    {
+    "id": 4,
     "titulo": "Revolución Francesa",
     "fecha": "1789-07-14",
     "periodo": "Siglo XVIII",
     "ubicacion": [48.8566, 2.3522],
     "pais": "Francia",
-    "descripcion": "La Revolución Francesa comenzó el 14 de julio de 1789 con la toma de la Bastilla, marcando un antes y un después en la historia de Francia y del mundo, impulsando ideas de libertad, igualdad y fraternidad.",
+    "descripcion": "La Revolución Francesa transformó profundamente la estructura política y social de Francia, marcando el fin del absolutismo y el surgimiento de ideales republicanos.",
     "media": "revolucion_francesa.jpg"
-  },
-  {
-    "id": 9,
-    "titulo": "Declaración de Independencia de Estados Unidos",
-    "fecha": "1776-07-04",
-    "periodo": "Siglo XVIII",
-    "ubicacion": [39.9526, -75.1652],
-    "pais": "Estados Unidos",
-    "descripcion": "La Declaración de Independencia proclamó la separación de las 13 colonias americanas del dominio británico, sentando las bases para la creación de los Estados Unidos.",
-    "media": "declaracion_independencia_eeuu.jpg"
   }
 ]

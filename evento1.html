@@ -1,129 +1,100 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Revolución de Mayo - Argentina</title>
-  <link rel="stylesheet" href="estiloseventos.css" />
-</head>
-<body>
-  <h1>Revolución de Mayo</h1>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Revolución de Mayo</title>
+    <link rel="stylesheet" href="estiloseventos.css" />
+  </head>
+  <body data-evento="evento1">
 
-  <p>
-    La <strong>Revolución de Mayo</strong> fue un conjunto de eventos ocurridos entre el 18 y 25 de mayo de 1810, que marcaron el inicio del proceso de independencia de Argentina y de otras naciones sudamericanas del dominio español.
-  </p>
+    <!-- Enlace de regreso al mapa -->
+    <a href="index.html" class="volver-mapa">← Volver al mapa</a>
 
-  <h2>Contexto histórico</h2>
-  <p>
-    A comienzos del siglo XIX, el Virreinato del Río de la Plata estaba bajo dominio español. Las ideas de la Ilustración, la influencia de la Revolución Francesa y los sucesos en España con la invasión napoleónica motivaron a los criollos a buscar autonomía.
-  </p>
+    <h1>Revolución de Mayo</h1>
 
-  <p>
-    El Cabildo Abierto del 22 de mayo de 1810 y la destitución del virrey Baltasar Hidalgo de Cisneros fueron momentos clave para la conformación de la Primera Junta de gobierno autónomo el 25 de mayo.
-  </p>
+    <p>
+      La <strong>Revolución de Mayo</strong> fue una serie de acontecimientos
+      ocurridos entre el 18 y el 25 de mayo de 1810 en Buenos Aires, que marcaron
+      el inicio del proceso de independencia de las colonias españolas en
+      América del Sur.
+    </p>
 
-  <h2>Importancia</h2>
-  <p>
-    La Revolución de Mayo sentó las bases para la independencia de Argentina declarada en 1816 y para la creación de nuevas naciones en Sudamérica. Es considerada la fecha fundacional de la Argentina moderna.
-  </p>
+    <h2>Contexto histórico</h2>
+    <p>
+      En el contexto de las invasiones napoleónicas en España y la captura del
+      rey Fernando VII, las colonias americanas comenzaron a cuestionar la
+      autoridad de los virreyes. En el Virreinato del Río de la Plata, creció la
+      idea de autogobierno para proteger intereses locales y responder a la
+      crisis política en la península ibérica.
+    </p>
 
-  <h2>Celebraciones</h2>
-  <p>
-    Cada 25 de mayo se celebra el Día de la Revolución de Mayo, con actos oficiales, desfiles, y actividades culturales en todo el país.
-  </p>
+    <h2>Desarrollo de la Revolución</h2>
+    <p>
+      Entre el 18 y 25 de mayo de 1810, se sucedieron reuniones y debates en el
+      Cabildo de Buenos Aires. El 25 de mayo, se depuso al virrey Baltasar
+      Hidalgo de Cisneros y se formó la <strong>Primera Junta</strong>, el primer
+      gobierno local autónomo.
+    </p>
 
-  <h2>Galería de imágenes</h2>
-  <div class="galeria">
-    <img src="revolucion1.jpg" alt="Cabildo Abierto" />
-    <img src="revolucion2.jpg" alt="Primera Junta" />
-    <img src="revolucion3.jpg" alt="Acta de la Revolución" />
-    <img src="revolucion4.jpg" alt="Desfile 25 de mayo" />
-    <img src="revolucion5.jpg" alt="Plaza de Mayo hoy" />
-  </div>
+    <h2>Importancia</h2>
+    <p>
+      La Revolución de Mayo es considerada el punto de partida del proceso
+      independentista en Argentina y otros territorios sudamericanos. Generó un
+      cambio político profundo que luego conduciría a la declaración formal de
+      independencia en 1816.
+    </p>
 
-  <!-- Trivia -->
-  <div id="trivia-container">
-    <h2>Trivia Revolución de Mayo</h2>
-    <div id="pregunta"></div>
-    <div id="opciones"></div>
-    <div id="respuesta"></div>
-    <button id="siguiente">Siguiente pregunta</button>
-  </div>
+    <h2>Legado</h2>
+    <p>
+      La Revolución simboliza la lucha por la soberanía y la autonomía de los
+      pueblos americanos. Se celebra cada 25 de mayo como una fecha patria en
+      Argentina, con actos oficiales, desfiles y festividades populares.
+    </p>
 
-  <a href="index.html">← Volver al mapa</a>
+    <h2>Galería de Fotos Históricas y Representaciones</h2>
+    <div class="galeria">
+      <img src="revolucion1.jpg" alt="Cabildo abierto del 22 de mayo" />
+      <img src="revolucion2.jpg" alt="Primera Junta de Gobierno" />
+      <img src="revolucion3.jpg" alt="Representación artística de la Revolución" />
+      <img src="revolucion4.jpg" alt="Actos conmemorativos actuales" />
+      <img src="revolucion5.jpg" alt="Plaza de Mayo en Buenos Aires" />
+    </div>
 
-  <script>
-    const preguntasOriginales = [
-      { pregunta: "¿En qué año ocurrió la Revolución de Mayo?", opciones: ["1810", "1816", "1808"], respuesta: "1810" },
-      { pregunta: "¿Qué institución fue depuesta durante la Revolución?", opciones: ["Virrey", "Presidente", "Gobernador"], respuesta: "Virrey" },
-      { pregunta: "¿Cuál fue el nombre del virrey depuesto?", opciones: ["Baltasar Hidalgo de Cisneros", "José de San Martín", "Manuel Belgrano"], respuesta: "Baltasar Hidalgo de Cisneros" },
-      { pregunta: "¿Qué se formó el 25 de mayo de 1810?", opciones: ["Primera Junta", "Congreso", "Segunda Junta"], respuesta: "Primera Junta" },
-      { pregunta: "¿Qué evento antecedió a la Revolución en España?", opciones: ["Invasión napoleónica", "Revolución Francesa", "Independencia de México"], respuesta: "Invasión napoleónica" },
-      { pregunta: "¿Dónde se realizó el Cabildo Abierto?", opciones: ["Buenos Aires", "Córdoba", "Rosario"], respuesta: "Buenos Aires" },
-      { pregunta: "¿Qué se celebra cada 25 de mayo en Argentina?", opciones: ["Día de la Revolución de Mayo", "Día de la Independencia", "Día del Trabajo"], respuesta: "Día de la Revolución de Mayo" }
-    ];
+    <h2>Trivia Histórica sobre la Revolución de Mayo</h2>
+    <button id="comenzar">✅ Comenzar trivia</button>
 
-    let preguntas = [];
-    let indice = 0;
-    let puntaje = 0;
+    <div id="trivia-container" style="display: none">
+      <div id="progreso"></div>
+      <div
+        id="pregunta"
+        style="font-weight: bold; font-size: 1.2rem; margin-bottom: 10px"
+      ></div>
+      <div id="opciones"></div>
+      <div id="respuesta" style="margin-top:10px; font-weight:bold;"></div>
+      <button id="siguiente" style="display:none;">Siguiente pregunta</button>
+    </div>
 
-    function mezclarArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
+    <!-- Segundo enlace de regreso -->
+    <br />
+    <a href="index.html" class="volver-mapa">← Volver al mapa</a>
 
-    function inicializarTrivia() {
-      preguntas = JSON.parse(JSON.stringify(preguntasOriginales));
-      mezclarArray(preguntas);
-      preguntas.forEach(p => mezclarArray(p.opciones));
-      indice = 0;
-      puntaje = 0;
-      mostrarPregunta();
-    }
+    <script src="trivia.js"></script>
+    <script>
+      // Código para cancelar audio y trivia al volver al mapa
+      document.querySelectorAll(".volver-mapa").forEach((enlace) => {
+        enlace.addEventListener("click", function () {
+          window.speechSynthesis.cancel();
 
-    function mostrarPregunta() {
-      if (indice >= preguntas.length) {
-        alert(`¡Trivia terminada!\nPuntaje: ${puntaje} / ${preguntas.length}`);
-        return;
-      }
-      const p = preguntas[indice];
-      document.getElementById('pregunta').textContent = `Pregunta ${indice + 1}: ${p.pregunta}`;
-      const opcionesDiv = document.getElementById('opciones');
-      opcionesDiv.innerHTML = '';
-      p.opciones.forEach(opcion => {
-        const btn = document.createElement('button');
-        btn.textContent = opcion;
-        btn.onclick = () => verificarRespuesta(opcion);
-        opcionesDiv.appendChild(btn);
+          if (document.getElementById("trivia-container")) {
+            preguntas = [];
+            indice = 0;
+            puntaje = 0;
+            document.getElementById("trivia-container").style.display = "none";
+            document.getElementById("comenzar").style.display = "inline-block";
+          }
+        });
       });
-      document.getElementById('respuesta').textContent = '';
-      document.getElementById('siguiente').style.display = 'none';
-    }
-
-    function verificarRespuesta(seleccion) {
-      const p = preguntas[indice];
-      const textoRespuesta = document.getElementById('respuesta');
-      if (seleccion === p.respuesta) {
-        textoRespuesta.textContent = '¡Correcto!';
-        puntaje++;
-      } else {
-        textoRespuesta.textContent = `Incorrecto. La respuesta correcta es: ${p.respuesta}`;
-      }
-      const botones = document.getElementById('opciones').children;
-      for (const btn of botones) {
-        btn.disabled = true;
-      }
-      document.getElementById('siguiente').style.display = 'inline-block';
-    }
-
-    document.getElementById('siguiente').addEventListener('click', () => {
-      indice++;
-      mostrarPregunta();
-    });
-
-    inicializarTrivia();
-  </script>
-</body>
+    </script>
+  </body>
 </html>

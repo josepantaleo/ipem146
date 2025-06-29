@@ -96,68 +96,89 @@ strong {
 
 #opciones button {
   flex: 1 1 45%;
-  background: #f3e5f5;
-  border: 2px solid #ab47bc;
-  color: #4a148c;
-  padding: 14px;
-  border-radius: 15px;
+  background: #3498db; /* azul brillante */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 5px 5px 5px 0;
 }
 
 #opciones button:hover:not(:disabled) {
-  background: #38ec47;
+  background-color: #2980b9;
   transform: scale(1.03);
 }
 
 #opciones button:disabled {
-  opacity: 0.6;
+  background-color: #95a5a6;
   cursor: not-allowed;
+  opacity: 0.6;
 }
 
 /* Respuesta */
 #respuesta {
   margin-top: 20px;
   font-weight: 700;
-  font-size: 2.2rem;
+  font-size: 1.2rem;
   text-align: center;
-  min-height: 1.2em;
-  color:rgb(10, 8, 138);
+  min-height: 1.4em;
+  color: rgb(10, 8, 138);
 }
 
 /* Botón siguiente */
 #siguiente {
   margin-top: 25px;
   padding: 14px 28px;
-  background: #4db6ac;
+  background-color: #27ae60;
   color: white;
   border: none;
-  border-radius: 14px;
+  border-radius: 5px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(77, 182, 172, 0.4);
-  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 18px rgba(39, 174, 96, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
   display: none;
 }
 
 #siguiente:hover {
-  background: #00897b;
+  background-color: #219150;
   transform: scale(1.04);
+}
+
+/* Botón comenzar trivia */
+#comenzar {
+  padding: 12px 25px;
+  background-color: #e67e22;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+  margin: 0 auto 20px auto; /* arriba: 0, izquierda y derecha auto, abajo 20px */
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+
+#comenzar:hover {
+  background-color: #d35400;
 }
 
 /* Enlace volver */
 a {
-  display: block;
-  margin-top: 40px;
-  text-align: center;
-  font-size: 1.1rem;
-  color: #00695c;
-  font-weight: 600;
+  display: inline-block;
+  margin-top: 25px;
+  color: #34495e;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
   transition: color 0.3s ease;
+  text-align: center;
 }
 
 a:hover {

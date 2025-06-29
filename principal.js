@@ -141,7 +141,7 @@ function crearMarcadores() {
         <p>${evento.descripcion || ""}</p>
         ${
           evento.media
-            ? `<img src="${evento.media}" alt="${evento.titulo}" style="width:100%;border-radius:6px;margin-top:5px;" />`
+            ? `<img src="${evento.media}" alt="${evento.titulo}" style="width:60%;border-radius:20px;margin-top:20px;" />`
             : ""
         }
         <button class="btn-ver-mas" style="margin-top:10px;padding:6px 10px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer">
