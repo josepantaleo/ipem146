@@ -1,8 +1,13 @@
+// El problema principal suele ser que el contenido del popup se genera como HTML
+// y el botón dentro no tiene asignado el event listener porque el DOM del popup
+// se crea dinámicamente y el código debe añadir el listener *después* de abrir el popup.
+
+// Aquí el código completo con corrección para asegurar que el botón "Ver más" funcione correctamente:
+
 // Estado inicial por defecto
 const posicionInicialPorDefecto = [0, 0];
 const zoomInicialPorDefecto = 2;
 
-// Funciones para guardar y cargar estado en localStorage
 function guardarEstadoMapa() {
   const centro = map.getCenter();
   const zoom = map.getZoom();
@@ -31,11 +36,12 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
-// Guardar estado al mover o hacer zoom en el mapa
 map.on("moveend", guardarEstadoMapa);
-map.on("zoomend", guardarEstadoMapa);
+map.on("zoomend", () => {
+  abrirPopupCercanoAlCentro();
+  guardarEstadoMapa();
+});
 
-// Botón Inicio que resetea filtros y vista
 const botonInicio = L.control({ position: "topright" });
 botonInicio.onAdd = function () {
   const div = L.DomUtil.create("div");
@@ -54,14 +60,11 @@ botonInicio.onAdd = function () {
       🔄 Inicio
     </button>`;
   div.onclick = () => {
-    // Reset vista y filtros
     map.setView(posicionInicialPorDefecto, zoomInicialPorDefecto);
     filtroPeriodo.value = "todos";
     filtroPais.value = "todos";
     busquedaTitulo.value = "";
     actualizarEventos();
-
-    // Limpiar estado guardado
     localStorage.removeItem("mapa_lat");
     localStorage.removeItem("mapa_lng");
     localStorage.removeItem("mapa_zoom");
@@ -73,7 +76,6 @@ botonInicio.addTo(map);
 const markerCluster = L.markerClusterGroup();
 map.addLayer(markerCluster);
 
-// Referencias DOM
 const filtroPeriodo = document.getElementById("filtroPeriodo");
 const filtroPais = document.getElementById("filtroPais");
 const busquedaTitulo = document.getElementById("busquedaTitulo");
@@ -83,6 +85,8 @@ const contadorEventos = document.getElementById("contador-eventos");
 
 let eventos = [];
 let marcadores = [];
+
+let popupCerrarTimeout = null;
 
 fetch("eventos.json")
   .then((res) => {
@@ -121,14 +125,15 @@ function llenarFiltroPaises() {
 }
 
 function crearMarcadores() {
-  marcadores = eventos.map((evento) => {
-    if (!evento.ubicacion?.length === 2) return null;
+  marcadores = eventos
+    .map((evento) => {
+      if (!(evento.ubicacion && evento.ubicacion.length === 2)) return null;
 
-    const marker = L.marker(evento.ubicacion);
-    marker.eventoId = evento.id;
+      const marker = L.marker(evento.ubicacion);
+      marker.eventoId = evento.id;
 
-    const popupContent = `
-      <div style="max-width:250px">
+      const popupContent = `
+      <div style="max-width:250px; cursor: default;">
         <h3>${evento.titulo}</h3>
         <p><strong>Fecha:</strong> ${evento.fecha}</p>
         <p><strong>Período:</strong> ${evento.periodo}</p>
@@ -139,15 +144,44 @@ function crearMarcadores() {
             ? `<img src="${evento.media}" alt="${evento.titulo}" style="width:100%;border-radius:6px;margin-top:5px;" />`
             : ""
         }
-        <button onclick="window.location.href='evento${evento.id}.html'"
-          style="margin-top:10px;padding:6px 10px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer">
+        <button class="btn-ver-mas" style="margin-top:10px;padding:6px 10px;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer">
           Ver más
         </button>
       </div>`;
 
-    marker.bindPopup(popupContent);
-    return marker;
-  }).filter(Boolean);
+      marker.bindPopup(popupContent);
+
+      // Abrimos popup al pasar mouse pero sin cerrarlo al salir para permitir click
+      marker.on("mouseover", () => {
+        marker.openPopup();
+      });
+      // No cerramos popup en mouseout para permitir usar el botón
+
+      // Al abrir el popup, asignamos el listener al botón "Ver más"
+      marker.on("popupopen", () => {
+        const popupEl = marker.getPopup().getElement();
+        if (popupEl) {
+          const btnVerMas = popupEl.querySelector(".btn-ver-mas");
+          if (btnVerMas) {
+            btnVerMas.onclick = (e) => {
+              e.stopPropagation(); // Evita cerrar popup al click
+              window.location.href = `evento${evento.id}.html`;
+            };
+          }
+        }
+      });
+
+      return marker;
+    })
+    .filter(Boolean);
+}
+
+function cerrarPopups() {
+  if (popupCerrarTimeout) {
+    clearTimeout(popupCerrarTimeout);
+    popupCerrarTimeout = null;
+  }
+  marcadores.forEach((m) => m.closePopup());
 }
 
 function actualizarEventos() {
@@ -158,17 +192,18 @@ function actualizarEventos() {
   const paisSel = filtroPais.value;
   const textoBusqueda = busquedaTitulo.value.trim().toLowerCase();
 
-  const eventosFiltrados = eventos.filter((e) =>
-    (periodoSel === "todos" || e.periodo === periodoSel) &&
-    (paisSel === "todos" || e.pais === paisSel) &&
-    e.titulo.toLowerCase().includes(textoBusqueda)
+  const eventosFiltrados = eventos.filter(
+    (e) =>
+      (periodoSel === "todos" || e.periodo === periodoSel) &&
+      (paisSel === "todos" || e.pais === paisSel) &&
+      e.titulo.toLowerCase().includes(textoBusqueda)
   );
 
   mensajeNoEventos.style.display = eventosFiltrados.length === 0 ? "block" : "none";
   contadorEventos.textContent = `${eventosFiltrados.length} evento(s) encontrados.`;
 
-  const marcadoresFiltrados = marcadores.filter(m => {
-    const evento = eventos.find(e => e.id === m.eventoId);
+  const marcadoresFiltrados = marcadores.filter((m) => {
+    const evento = eventos.find((e) => e.id === m.eventoId);
     return eventosFiltrados.includes(evento);
   });
 
@@ -182,8 +217,11 @@ function actualizarEventos() {
 
     div.addEventListener("click", () => {
       map.flyTo(evento.ubicacion, 8, { duration: 1.5 });
-      const marker = marcadores.find(m => m.eventoId === evento.id);
-      if (marker) marker.openPopup();
+      cerrarPopups();
+      const marker = marcadores.find((m) => m.eventoId === evento.id);
+      if (marker) {
+        marker.openPopup();
+      }
     });
 
     div.addEventListener("keydown", (e) => {
@@ -197,7 +235,6 @@ function actualizarEventos() {
   });
 }
 
-// Zoom al cambiar país para mostrar bien los eventos o volver a vista inicial si es "todos"
 filtroPais.addEventListener("change", () => {
   actualizarEventos();
 
@@ -208,14 +245,40 @@ filtroPais.addEventListener("change", () => {
   }
 
   const ubicaciones = eventos
-    .filter(e => e.pais === paisSeleccionado && e.ubicacion?.length === 2)
-    .map(e => e.ubicacion);
+    .filter((e) => e.pais === paisSeleccionado && e.ubicacion?.length === 2)
+    .map((e) => e.ubicacion);
 
   if (ubicaciones.length > 0) {
     const bounds = L.latLngBounds(ubicaciones);
     map.flyToBounds(bounds, { padding: [30, 30], maxZoom: 8 });
   }
 });
+
+function abrirPopupCercanoAlCentro() {
+  cerrarPopups();
+
+  const centro = map.getCenter();
+  let marcadorCercano = null;
+  let distanciaMin = Infinity;
+
+  marcadores.forEach((marker) => {
+    const latLng = marker.getLatLng();
+    const distancia = centro.distanceTo(latLng);
+    if (distancia < distanciaMin) {
+      distanciaMin = distancia;
+      marcadorCercano = marker;
+    }
+  });
+
+  if (marcadorCercano) {
+    marcadorCercano.openPopup();
+
+    popupCerrarTimeout = setTimeout(() => {
+      marcadorCercano.closePopup();
+      popupCerrarTimeout = null;
+    }, 3000);
+  }
+}
 
 function debounce(func, delay) {
   let timer;
